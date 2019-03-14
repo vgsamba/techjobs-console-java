@@ -10,6 +10,7 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by LaunchCode
@@ -72,17 +73,45 @@ public class JobData {
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
-        for (HashMap<String, String> row : allJobs) {
+        for (HashMap<String, String> row : allJobs) {// for each hashmap(row)in the arraylist(alljobs)
 
-            String aValue = row.get(column);
+            String aValue = row.get(column);        //get the column for the hashmap
 
-            if (aValue.contains(value)) {
-                jobs.add(row);
+            if (aValue.contains(value)) {           // n check if that column contains any value ..
+
+                jobs.add(row);                  //if it has a value..  add it to the Arraylist(jobs)
             }
         }
+        if (column.equalsIgnoreCase("location") && jobs.isEmpty()){
+          System.out.println("There are no jobs for this location");
+        }
 
-        return jobs;
+        return jobs;//@return List of all jobs matching the criteria
     }
+
+    public static ArrayList<HashMap<String, String>> findByValue(String searchString) {
+        System.out.println("findByValue");
+        // load data, if not already loaded
+        loadData();
+
+        ArrayList<HashMap<String, String>> records = new ArrayList<>();
+        for (HashMap<String, String> job : allJobs) {
+            // For each hashmap 'entry', iterate over it
+            for (Map.Entry<String, String> entry : job.entrySet()) {
+                // Do something with entrydetails,get the key.
+                String entrydetails = entry.getValue();
+                if (entrydetails.toLowerCase().contains(searchString.toLowerCase())) {
+                    records.add(job);
+                    break;
+                }
+
+            }
+        }
+        return records;
+    }
+
+
+
 
     /**
      * Read in data from a CSV file and store it in a list

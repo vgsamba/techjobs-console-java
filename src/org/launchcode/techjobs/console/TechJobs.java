@@ -2,6 +2,7 @@ package org.launchcode.techjobs.console;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -43,7 +44,7 @@ public class TechJobs {
 
                     ArrayList<String> results = JobData.findAll(columnChoice);
 
-                    System.out.println("\n*** All " + columnChoices.get(columnChoice) + " Values ***");
+                    System.out.println("\n*** All " + columnChoices.get(columnChoice) + " Values ***");  //Displayed on selection of list and 2 or 3 or 4
 
                     // Print list of skills, employers, etc
                     for (String item : results) {
@@ -61,7 +62,8 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    System.out.println("Search all fields not yet implemented.");
+                    //System.out.println("Search all fields not yet implemented.");
+                    printJobs(JobData.findByValue(searchTerm));
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
@@ -69,7 +71,8 @@ public class TechJobs {
         }
     }
 
-    // ﻿Returns the key of the selected item from the choices Dictionary
+    // ﻿Returns the key of the selected item from the choices Dictionary0
+
     private static String getUserSelection(String menuHeader, HashMap<String, String> choices) {
 
         Integer choiceIdx;
@@ -111,6 +114,21 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
-        System.out.println("printJobs is not implemented yet");
+        for(HashMap<String,String> job : someJobs){
+            System.out.println("*****");
+
+            for(Map.Entry jobEntry : job.entrySet() )
+            {
+                //System.out.println("***********************");
+                System.out.println(jobEntry.getKey()+ " : "+ jobEntry.getValue());
+            }
+            /*System.out.println(job.get("name"));
+            System.out.println(job.get("position type"));
+            System.out.println(job.get("employer"));
+            System.out.println(job.get("location"));
+            System.out.println(job.get("core competency"));
+            System.out.println("***********************");*/
+        }
+
     }
 }
