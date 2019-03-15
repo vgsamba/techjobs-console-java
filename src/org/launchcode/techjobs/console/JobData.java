@@ -82,15 +82,19 @@ public class JobData {
                 jobs.add(row);                  //if it has a value..  add it to the Arraylist(jobs)
             }
         }
-        if (column.equalsIgnoreCase("location") && jobs.isEmpty()){
-          System.out.println("There are no jobs for this location");
+        /*if (column.equals("location")){
+            System.out.println("There are no jobs for this location");
+        }*/
+        if (jobs.isEmpty())
+        {
+          System.out.println("There are no jobs for this "+ column );
         }
 
         return jobs;//@return List of all jobs matching the criteria
     }
 
     public static ArrayList<HashMap<String, String>> findByValue(String searchString) {
-        System.out.println("findByValue");
+
         // load data, if not already loaded
         loadData();
 

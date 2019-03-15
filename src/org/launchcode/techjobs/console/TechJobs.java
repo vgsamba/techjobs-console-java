@@ -1,5 +1,4 @@
 package org.launchcode.techjobs.console;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -119,15 +118,8 @@ public class TechJobs {
 
             for(Map.Entry jobEntry : job.entrySet() )
             {
-                //System.out.println("***********************");
-                System.out.println(jobEntry.getKey()+ " : "+ jobEntry.getValue());
+                               System.out.println(jobEntry.getKey()+ " : "+ jobEntry.getValue());
             }
-            /*System.out.println(job.get("name"));
-            System.out.println(job.get("position type"));
-            System.out.println(job.get("employer"));
-            System.out.println(job.get("location"));
-            System.out.println(job.get("core competency"));
-            System.out.println("***********************");*/
         }
 
     }
